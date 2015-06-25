@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b97f6f0d36354cbfb69b243022acd43b" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="WhizzleModel.StringMap" Width="1.5" PointX="4.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.Employee" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.Connection" Width="1.5" PointX="2.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.Library" Width="1.5" PointX="2.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.News" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.PinBoard" Width="1.5" PointX="11.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.Team" Width="1.5" PointX="6.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.TeamMember" Width="1.5" PointX="9.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.User" Width="1.5" PointX="4.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhizzleModel.UserActivity" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="WhizzleModel.FK_User_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_Connection_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_Connection_User_Friend" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_PinBoard_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_PinBoard_User_Assignee" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_PinBoard_User_Creator" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_TeamMember_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_TeamMember_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WhizzleModel.FK_UserActivity_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WhizzleModel.Message" Width="1.5" PointX="7.625" PointY="4.5" />
+        <AssociationConnector Association="WhizzleModel.FK_Message_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

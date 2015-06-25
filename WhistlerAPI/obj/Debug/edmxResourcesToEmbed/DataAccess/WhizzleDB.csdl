@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WhizzleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="StringMap">
+    <Key>
+      <PropertyRef Name="StringmapId" />
+    </Key>
+    <Property Name="StringmapId" Type="Guid" Nullable="false" />
+    <Property Name="Entity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AttributeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AttributeValue" Type="Int32" />
+    <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Guid" Nullable="false" />
+    <Property Name="NIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Employee" FromRole="Employee" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Connection">
+    <Key>
+      <PropertyRef Name="ConnectionId" />
+    </Key>
+    <Property Name="ConnectionId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="FriendId" Type="Guid" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Connection_User" FromRole="Connection" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Connection_User_Friend" FromRole="Connection" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Library">
+    <Key>
+      <PropertyRef Name="LibraryId" />
+    </Key>
+    <Property Name="LibraryId" Type="Guid" Nullable="false" />
+    <Property Name="Category" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Thumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FileLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsId" />
+    </Key>
+    <Property Name="NewsId" Type="Guid" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PublishedOn" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="Category" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NewsContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StatusCode" Type="Int32" Nullable="false" />
+    <Property Name="NewsImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PinBoard">
+    <Key>
+      <PropertyRef Name="PinBoardId" />
+    </Key>
+    <Property Name="PinBoardId" Type="Guid" Nullable="false" />
+    <Property Name="TeamId" Type="Guid" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedById" Type="Guid" />
+    <Property Name="AssigneeId" Type="Guid" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Priority" Type="Int32" />
+    <Property Name="StatusCode" Type="Int32" />
+    <NavigationProperty Name="Team" Relationship="Self.FK_PinBoard_Team" FromRole="PinBoard" ToRole="Team" />
+    <NavigationProperty Name="User" Relationship="Self.FK_PinBoard_User_Assignee" FromRole="PinBoard" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_PinBoard_User_Creator" FromRole="PinBoard" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="TeamId" />
+    </Key>
+    <Property Name="TeamId" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="StatusCode" Type="Int32" />
+    <NavigationProperty Name="PinBoards" Relationship="Self.FK_PinBoard_Team" FromRole="Team" ToRole="PinBoard" />
+    <NavigationProperty Name="TeamMembers" Relationship="Self.FK_TeamMember_Team" FromRole="Team" ToRole="TeamMember" />
+  </EntityType>
+  <EntityType Name="TeamMember">
+    <Key>
+      <PropertyRef Name="TeamMemberId" />
+    </Key>
+    <Property Name="TeamMemberId" Type="Guid" Nullable="false" />
+    <Property Name="TeamId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <NavigationProperty Name="Team" Relationship="Self.FK_TeamMember_Team" FromRole="TeamMember" ToRole="Team" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TeamMember_User" FromRole="TeamMember" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="EmployeeId" Type="Guid" />
+    <Property Name="IMEI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ShareLocation" Type="Boolean" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LocationDate" Type="DateTime" Precision="3" />
+    <Property Name="StatusCode" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_User_Employee" FromRole="User" ToRole="Employee" />
+    <NavigationProperty Name="Connections" Relationship="Self.FK_Connection_User" FromRole="User" ToRole="Connection" />
+    <NavigationProperty Name="Connections1" Relationship="Self.FK_Connection_User_Friend" FromRole="User" ToRole="Connection" />
+    <NavigationProperty Name="PinBoard" Relationship="Self.FK_PinBoard_User_Assignee" FromRole="User" ToRole="PinBoard" />
+    <NavigationProperty Name="PinBoards" Relationship="Self.FK_PinBoard_User_Creator" FromRole="User" ToRole="PinBoard" />
+    <NavigationProperty Name="TeamMembers" Relationship="Self.FK_TeamMember_User" FromRole="User" ToRole="TeamMember" />
+    <NavigationProperty Name="UserActivities" Relationship="Self.FK_UserActivity_User" FromRole="User" ToRole="UserActivity" />
+    <NavigationProperty Name="Messages" Relationship="WhizzleModel.FK_Message_User" FromRole="User" ToRole="Message" />
+  </EntityType>
+  <EntityType Name="UserActivity">
+    <Key>
+      <PropertyRef Name="UserActivityId" />
+    </Key>
+    <Property Name="UserActivityId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="ActivityDetail" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserActivity_User" FromRole="UserActivity" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_User_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Connection_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Connection" Type="Self.Connection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Connection">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Connection_User_Friend">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Connection" Type="Self.Connection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Connection">
+        <PropertyRef Name="FriendId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinBoard_Team">
+    <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="PinBoard">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinBoard_User_Assignee">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PinBoard">
+        <PropertyRef Name="PinBoardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PinBoard_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PinBoard">
+        <PropertyRef Name="CreatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamMember_Team">
+    <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="TeamMember" Type="Self.TeamMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="TeamMember">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamMember_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="TeamMember" Type="Self.TeamMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TeamMember">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserActivity_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="UserActivity" Type="Self.UserActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserActivity">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WhizzleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="StringMaps" EntityType="Self.StringMap" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Connections" EntityType="Self.Connection" />
+    <EntitySet Name="Libraries" EntityType="Self.Library" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="PinBoards" EntityType="Self.PinBoard" />
+    <EntitySet Name="Teams" EntityType="Self.Team" />
+    <EntitySet Name="TeamMembers" EntityType="Self.TeamMember" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserActivities" EntityType="Self.UserActivity" />
+    <AssociationSet Name="FK_User_Employee" Association="Self.FK_User_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Connection_User" Association="Self.FK_Connection_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Connection" EntitySet="Connections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Connection_User_Friend" Association="Self.FK_Connection_User_Friend">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Connection" EntitySet="Connections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinBoard_Team" Association="Self.FK_PinBoard_Team">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="PinBoard" EntitySet="PinBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinBoard_User_Assignee" Association="Self.FK_PinBoard_User_Assignee">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PinBoard" EntitySet="PinBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PinBoard_User_Creator" Association="Self.FK_PinBoard_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PinBoard" EntitySet="PinBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamMember_Team" Association="Self.FK_TeamMember_Team">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="TeamMember" EntitySet="TeamMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamMember_User" Association="Self.FK_TeamMember_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TeamMember" EntitySet="TeamMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserActivity_User" Association="Self.FK_UserActivity_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserActivity" EntitySet="UserActivities" />
+    </AssociationSet>
+    <EntitySet Name="Messages" EntityType="WhizzleModel.Message" />
+    <AssociationSet Name="FK_Message_User" Association="WhizzleModel.FK_Message_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="Guid" Nullable="false" />
+    <Property Name="Sender" Type="Guid" />
+    <Property Name="Sent" Type="DateTime" Precision="3" />
+    <Property Name="Received" Type="DateTime" Precision="3" />
+    <Property Name="RecipientUser" Type="Guid" />
+    <Property Name="RecipientTeam" Type="Guid" />
+    <Property Name="MessageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expired" Type="DateTime" Precision="3" />
+    <Property Name="StatusCode" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="WhizzleModel.FK_Message_User" FromRole="Message" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Message_User">
+    <End Type="WhizzleModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="WhizzleModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="RecipientUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
