@@ -14,9 +14,10 @@ namespace WhizzleAPI.Controllers
         public string nip { get; set; }
         public string imei { get; set; }
     }
-    public class UserIdentifier
+    public class Identifier
     {
         public Guid userId { get; set; }
+        public Guid teamId { get; set; }
     }
     public class UserController : ApiController
     {
@@ -41,15 +42,15 @@ namespace WhizzleAPI.Controllers
         }
 
         [Route("api/user/friend"), HttpPost]
-        public List<UserModel> PostFriend(UserIdentifier id)
+        public List<UserModel> PostFriend(Identifier id)
         {
             return repo.GetFriend(id.userId);
         }
 
-        //[Route("api/user/friend"), HttpPost]
-        //public HttpResponseMessage PostFriend()
-        //{
-        //    return Request.CreateResponse(HttpStatusCode.OK, "ASU KOWE !");
-        //}
+        [Route("api/user/teammember"), HttpPost]
+        public List<UserModel> PostTeamMember(Identifier id)
+        {
+            return repo.GetTeamMember(id.teamId);
+        }
     }
 }

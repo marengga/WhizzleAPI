@@ -116,5 +116,46 @@ WHERE c.FriendId = 'e7eb5c0f-03fe-e411-9386-1c750860c852'
             }
             return us;
         }
+
+        public List<UserModel> GetTeamMember(Guid teamId)
+        {
+            List<UserModel> us = new List<UserModel>();
+            var user = from u in we.Users
+                       join tm in we.TeamMembers on u.UserId equals tm.UserId
+                       join e in we.Employees on u.EmployeeId equals e.EmployeeId
+                       where tm.TeamId == teamId
+                       select new
+                       {
+                           u.UserId,
+                           e.EmployeeId,
+                           e.NIP,
+                           e.FullName,
+                           e.Department,
+                           u.IMEI,
+                           u.Status,
+                           u.ShareLocation,
+                           u.Location,
+                           u.LocationDate,
+                           ImageUrl = u.Avatar != null ? imgViewerBaseUrl + u.UserId.ToString() : ""
+                       };
+            foreach (var i in user)
+            {
+                us.Add(new UserModel
+                {
+                    Department = i.Department,
+                    EmployeeId = i.EmployeeId,
+                    FullName = i.FullName,
+                    ImageUrl = i.ImageUrl,
+                    IMEI = i.IMEI,
+                    Location = i.Location,
+                    LocationDate = i.LocationDate ?? DateTime.MinValue,
+                    NIP = i.NIP,
+                    ShareLocation = i.ShareLocation ?? false,
+                    Status = i.Status,
+                    UserId = i.UserId
+                });
+            }
+            return us;
+        }
     }
 }

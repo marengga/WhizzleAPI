@@ -10,5 +10,6 @@ namespace WhizzleAPI.Models
         List<UserModel> GetAll();
         UserModel Login(string nip, string imei);
         List<UserModel> GetFriend(Guid userId);
+        List<UserModel> GetTeamMember(Guid teamId);
     }
 }

@@ -92,7 +92,7 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
-    <Compile Include="Controllers\MyTeamController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="DataAccess\Connection.cs">
@@ -134,13 +134,14 @@
     <Compile Include="Models\IFileRepository.cs" />
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\FileRepository.cs" />
-    <Compile Include="Models\IMyTeamRepository.cs" />
+    <Compile Include="Models\ITeamRepository.cs" />
     <Compile Include="Models\IImageRepository.cs" />
     <Compile Include="Models\IMessageRepository.cs" />
     <Compile Include="Models\IUserRepository.cs" />
-    <Compile Include="Models\MyTeamModel.cs" />
+    <Compile Include="Models\PinModel.cs" />
+    <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Models\ImageModel.cs" />
-    <Compile Include="Models\MyTeamRepository.cs" />
+    <Compile Include="Models\TeamRepository.cs" />
     <Compile Include="Models\ImageRepository.cs" />
     <Compile Include="Models\ILibraryRepository.cs" />
     <Compile Include="Models\INewsRepository.cs" />
