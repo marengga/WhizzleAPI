@@ -18,6 +18,7 @@ namespace WhizzleAPI.DataAccess
         {
             this.PinBoards = new HashSet<PinBoard>();
             this.TeamMembers = new HashSet<TeamMember>();
+            this.Messages = new HashSet<Message>();
         }
     
         public System.Guid TeamId { get; set; }
@@ -28,5 +29,6 @@ namespace WhizzleAPI.DataAccess
     
         public virtual ICollection<PinBoard> PinBoards { get; set; }
         public virtual ICollection<TeamMember> TeamMembers { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

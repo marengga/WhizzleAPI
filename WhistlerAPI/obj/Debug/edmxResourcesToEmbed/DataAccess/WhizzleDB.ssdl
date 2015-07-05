@@ -74,11 +74,12 @@
     <Property Name="TeamId" Type="uniqueidentifier" />
     <Property Name="Title" Type="varchar" MaxLength="100" />
     <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="CreatedById" Type="uniqueidentifier" />
     <Property Name="AssigneeId" Type="uniqueidentifier" />
-    <Property Name="DueDate" Type="datetime" />
-    <Property Name="Priority" Type="int" />
-    <Property Name="StatusCode" Type="int" />
+    <Property Name="DueDate" Type="datetime" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="StatusCode" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Team">
     <Key>
@@ -145,6 +146,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Message_Group">
+    <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="RecipientTeam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Message_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Message" Type="Self.Message" Multiplicity="*" />
@@ -170,14 +183,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PinBoard_User_Assignee">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="UserId" />
       </Principal>
       <Dependent Role="PinBoard">
-        <PropertyRef Name="PinBoardId" />
+        <PropertyRef Name="AssigneeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -260,6 +273,10 @@
     <AssociationSet Name="FK_Connection_User_Friend" Association="Self.FK_Connection_User_Friend">
       <End Role="User" EntitySet="User" />
       <End Role="Connection" EntitySet="Connection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Group" Association="Self.FK_Message_Group">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Message" EntitySet="Message" />
     </AssociationSet>
     <AssociationSet Name="FK_Message_User" Association="Self.FK_Message_User">
       <End Role="User" EntitySet="User" />

@@ -26,6 +26,8 @@
         <AssociationConnector Association="WhizzleModel.FK_UserActivity_User" ManuallyRouted="false" />
         <EntityTypeShape EntityType="WhizzleModel.Message" Width="1.5" PointX="7.625" PointY="4.5" />
         <AssociationConnector Association="WhizzleModel.FK_Message_User" />
+        <AssociationConnector Association="WhizzleModel.FK_Message_Group" />
+        <AssociationConnector Association="WhizzleModel.FK_PinBoard_User_Assignee1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,7 +13,7 @@ namespace WhizzleAPI.Models
         public String Description { get; set; }
         public Guid CreatedById { get; set; }
         public Guid AssigneeId { get; set; }
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
         public int Priority { get; set; }
         public int StatusCode { get; set; }
     }

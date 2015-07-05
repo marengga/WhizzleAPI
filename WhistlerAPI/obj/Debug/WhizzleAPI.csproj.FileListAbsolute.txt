@@ -1,3 +1,4 @@
+D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\obj\Debug\WhizzleAPI.csprojResolveAssemblyReference.cache
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\bin\WhizzleAPI.dll.config
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\bin\WhizzleAPI.dll
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\bin\WhizzleAPI.pdb
@@ -13,6 +14,5 @@ D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\bin\Newtonsof
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\bin\System.Net.Http.Formatting.xml
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\bin\System.Web.Http.xml
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\bin\System.Web.Http.WebHost.xml
-D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\obj\Debug\WhizzleAPI.csprojResolveAssemblyReference.cache
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\obj\Debug\WhizzleAPI.dll
 D:\Campus\Other\!!! Perjuangan\Development\WhistlerAPI\WhistlerAPI\obj\Debug\WhizzleAPI.pdb

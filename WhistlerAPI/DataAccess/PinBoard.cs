@@ -20,12 +20,14 @@ namespace WhizzleAPI.DataAccess
         public string Description { get; set; }
         public Nullable<System.Guid> CreatedById { get; set; }
         public Nullable<System.Guid> AssigneeId { get; set; }
-        public Nullable<System.DateTime> DueDate { get; set; }
-        public Nullable<int> Priority { get; set; }
-        public Nullable<int> StatusCode { get; set; }
+        public System.DateTime DueDate { get; set; }
+        public int Priority { get; set; }
+        public int StatusCode { get; set; }
+        public System.DateTime CreatedOn { get; set; }
     
         public virtual Team Team { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+        public virtual User User2 { get; set; }
     }
 }

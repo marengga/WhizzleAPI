@@ -79,11 +79,12 @@
           <Property Name="TeamId" Type="uniqueidentifier" />
           <Property Name="Title" Type="varchar" MaxLength="100" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="CreatedById" Type="uniqueidentifier" />
           <Property Name="AssigneeId" Type="uniqueidentifier" />
-          <Property Name="DueDate" Type="datetime" />
-          <Property Name="Priority" Type="int" />
-          <Property Name="StatusCode" Type="int" />
+          <Property Name="DueDate" Type="datetime" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -150,6 +151,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Message_Group">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="RecipientTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Message_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
@@ -175,14 +188,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PinBoard_User_Assignee">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="PinBoard">
-              <PropertyRef Name="PinBoardId" />
+              <PropertyRef Name="AssigneeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -265,6 +278,10 @@
           <AssociationSet Name="FK_Connection_User_Friend" Association="Self.FK_Connection_User_Friend">
             <End Role="User" EntitySet="User" />
             <End Role="Connection" EntitySet="Connection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Group" Association="Self.FK_Message_Group">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Message" EntitySet="Message" />
           </AssociationSet>
           <AssociationSet Name="FK_Message_User" Association="Self.FK_Message_User">
             <End Role="User" EntitySet="User" />
@@ -368,12 +385,14 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="CreatedById" Type="Guid" />
           <Property Name="AssigneeId" Type="Guid" />
-          <Property Name="DueDate" Type="DateTime" Precision="3" />
-          <Property Name="Priority" Type="Int32" />
-          <Property Name="StatusCode" Type="Int32" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Team" Relationship="Self.FK_PinBoard_Team" FromRole="PinBoard" ToRole="Team" />
           <NavigationProperty Name="User" Relationship="Self.FK_PinBoard_User_Assignee" FromRole="PinBoard" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="Self.FK_PinBoard_User_Creator" FromRole="PinBoard" ToRole="User" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="User2" Relationship="WhizzleModel.FK_PinBoard_User_Assignee1" FromRole="PinBoard" ToRole="User" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -386,6 +405,7 @@
           <Property Name="StatusCode" Type="Int32" />
           <NavigationProperty Name="PinBoards" Relationship="Self.FK_PinBoard_Team" FromRole="Team" ToRole="PinBoard" />
           <NavigationProperty Name="TeamMembers" Relationship="Self.FK_TeamMember_Team" FromRole="Team" ToRole="TeamMember" />
+          <NavigationProperty Name="Messages" Relationship="WhizzleModel.FK_Message_Group" FromRole="Team" ToRole="Message" />
         </EntityType>
         <EntityType Name="TeamMember">
           <Key>
@@ -418,6 +438,7 @@
           <NavigationProperty Name="TeamMembers" Relationship="Self.FK_TeamMember_User" FromRole="User" ToRole="TeamMember" />
           <NavigationProperty Name="UserActivities" Relationship="Self.FK_UserActivity_User" FromRole="User" ToRole="UserActivity" />
           <NavigationProperty Name="Messages" Relationship="WhizzleModel.FK_Message_User" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="PinBoards1" Relationship="WhizzleModel.FK_PinBoard_User_Assignee1" FromRole="User" ToRole="PinBoard" />
         </EntityType>
         <EntityType Name="UserActivity">
           <Key>
@@ -589,6 +610,14 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Message" EntitySet="Messages" />
           </AssociationSet>
+          <AssociationSet Name="FK_Message_Group" Association="WhizzleModel.FK_Message_Group">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PinBoard_User_Assignee1" Association="WhizzleModel.FK_PinBoard_User_Assignee1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PinBoard" EntitySet="PinBoards" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Message">
           <Key>
@@ -604,6 +633,7 @@
           <Property Name="Expired" Type="DateTime" Precision="3" />
           <Property Name="StatusCode" Type="Int32" />
           <NavigationProperty Name="User" Relationship="WhizzleModel.FK_Message_User" FromRole="Message" ToRole="User" />
+          <NavigationProperty Name="Team" Relationship="WhizzleModel.FK_Message_Group" FromRole="Message" ToRole="Team" />
         </EntityType>
         <Association Name="FK_Message_User">
           <End Type="WhizzleModel.User" Role="User" Multiplicity="0..1" />
@@ -614,6 +644,30 @@
             </Principal>
             <Dependent Role="Message">
               <PropertyRef Name="RecipientUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Group">
+          <End Type="WhizzleModel.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="WhizzleModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="RecipientTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PinBoard_User_Assignee1">
+          <End Type="WhizzleModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WhizzleModel.PinBoard" Role="PinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PinBoard">
+              <PropertyRef Name="AssigneeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -683,6 +737,7 @@
           <EntitySetMapping Name="PinBoards">
             <EntityTypeMapping TypeName="WhizzleModel.PinBoard">
               <MappingFragment StoreEntitySet="PinBoard">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="PinBoardId" ColumnName="PinBoardId" />
                 <ScalarProperty Name="TeamId" ColumnName="TeamId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

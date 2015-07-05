@@ -61,6 +61,7 @@
     <EntitySetMapping Name="PinBoards">
       <EntityTypeMapping TypeName="WhizzleModel.PinBoard">
         <MappingFragment StoreEntitySet="PinBoard">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="PinBoardId" ColumnName="PinBoardId" />
           <ScalarProperty Name="TeamId" ColumnName="TeamId" />
           <ScalarProperty Name="Title" ColumnName="Title" />

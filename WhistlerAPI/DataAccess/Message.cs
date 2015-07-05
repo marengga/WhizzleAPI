@@ -25,5 +25,6 @@ namespace WhizzleAPI.DataAccess
         public Nullable<int> StatusCode { get; set; }
     
         public virtual User User { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

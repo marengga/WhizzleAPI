@@ -14,6 +14,12 @@ namespace WhizzleAPI.Models
     {
         String imgViewerBaseUrl = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + "/api/image/team/";
         WhizzleEntities we = new WhizzleEntities();
+        private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static String ConvertToTimestamp(DateTime value)
+        {
+            TimeSpan elapsedTime = value - Epoch.AddHours(7); // 7 untuk UTC hacks
+            return ((long)elapsedTime.TotalMilliseconds).ToString();
+        }
 
         public List<TeamModel> PostMyTeam(Guid id)
         {
@@ -66,10 +72,10 @@ namespace WhizzleAPI.Models
                     AssigneeId = i.AssigneeId??Guid.Empty,
                     CreatedById = i.CreatedById??Guid.Empty,
                     Description = i.Description,
-                    DueDate = i.DueDate??DateTime.MinValue,
+                    DueDate = ConvertToTimestamp(i.DueDate),
                     PinBoardId = i.PinBoardId,
-                    Priority = i.Priority??0,
-                    StatusCode = i.StatusCode??0,
+                    Priority = i.Priority,
+                    StatusCode = i.StatusCode,
                     TeamId = i.TeamId??Guid.Empty,
                     Title = i.Title
                 });
