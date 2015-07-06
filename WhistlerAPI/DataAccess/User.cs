@@ -38,7 +38,6 @@ namespace WhizzleAPI.DataAccess
         public virtual Employee Employee { get; set; }
         public virtual ICollection<Connection> Connections { get; set; }
         public virtual ICollection<Connection> Connections1 { get; set; }
-        public virtual PinBoard PinBoard { get; set; }
         public virtual ICollection<PinBoard> PinBoards { get; set; }
         public virtual ICollection<TeamMember> TeamMembers { get; set; }
         public virtual ICollection<UserActivity> UserActivities { get; set; }

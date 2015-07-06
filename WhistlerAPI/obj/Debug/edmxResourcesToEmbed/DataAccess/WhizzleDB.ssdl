@@ -70,7 +70,7 @@
     <Key>
       <PropertyRef Name="PinBoardId" />
     </Key>
-    <Property Name="PinBoardId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PinBoardId" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TeamId" Type="uniqueidentifier" />
     <Property Name="Title" Type="varchar" MaxLength="100" />
     <Property Name="Description" Type="varchar" MaxLength="500" />

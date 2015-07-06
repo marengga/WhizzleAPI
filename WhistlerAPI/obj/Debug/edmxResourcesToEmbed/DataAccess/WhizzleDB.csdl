@@ -59,7 +59,7 @@
     <Key>
       <PropertyRef Name="PinBoardId" />
     </Key>
-    <Property Name="PinBoardId" Type="Guid" Nullable="false" />
+    <Property Name="PinBoardId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TeamId" Type="Guid" />
     <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
@@ -69,7 +69,6 @@
     <Property Name="Priority" Type="Int32" Nullable="false" />
     <Property Name="StatusCode" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Team" Relationship="Self.FK_PinBoard_Team" FromRole="PinBoard" ToRole="Team" />
-    <NavigationProperty Name="User" Relationship="Self.FK_PinBoard_User_Assignee" FromRole="PinBoard" ToRole="User" />
     <NavigationProperty Name="User1" Relationship="Self.FK_PinBoard_User_Creator" FromRole="PinBoard" ToRole="User" />
     <Property Name="CreatedOn" Type="DateTime" Precision="3" Nullable="false" />
     <NavigationProperty Name="User2" Relationship="WhizzleModel.FK_PinBoard_User_Assignee1" FromRole="PinBoard" ToRole="User" />
@@ -113,7 +112,6 @@
     <NavigationProperty Name="Employee" Relationship="Self.FK_User_Employee" FromRole="User" ToRole="Employee" />
     <NavigationProperty Name="Connections" Relationship="Self.FK_Connection_User" FromRole="User" ToRole="Connection" />
     <NavigationProperty Name="Connections1" Relationship="Self.FK_Connection_User_Friend" FromRole="User" ToRole="Connection" />
-    <NavigationProperty Name="PinBoard" Relationship="Self.FK_PinBoard_User_Assignee" FromRole="User" ToRole="PinBoard" />
     <NavigationProperty Name="PinBoards" Relationship="Self.FK_PinBoard_User_Creator" FromRole="User" ToRole="PinBoard" />
     <NavigationProperty Name="TeamMembers" Relationship="Self.FK_TeamMember_User" FromRole="User" ToRole="TeamMember" />
     <NavigationProperty Name="UserActivities" Relationship="Self.FK_UserActivity_User" FromRole="User" ToRole="UserActivity" />
@@ -175,18 +173,6 @@
       </Principal>
       <Dependent Role="PinBoard">
         <PropertyRef Name="TeamId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PinBoard_User_Assignee">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="PinBoard" Type="Self.PinBoard" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="PinBoard">
-        <PropertyRef Name="PinBoardId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -263,10 +249,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_PinBoard_Team" Association="Self.FK_PinBoard_Team">
       <End Role="Team" EntitySet="Teams" />
-      <End Role="PinBoard" EntitySet="PinBoards" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PinBoard_User_Assignee" Association="Self.FK_PinBoard_User_Assignee">
-      <End Role="User" EntitySet="Users" />
       <End Role="PinBoard" EntitySet="PinBoards" />
     </AssociationSet>
     <AssociationSet Name="FK_PinBoard_User_Creator" Association="Self.FK_PinBoard_User_Creator">

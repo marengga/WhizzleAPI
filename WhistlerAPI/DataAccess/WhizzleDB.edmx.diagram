@@ -19,7 +19,6 @@
         <AssociationConnector Association="WhizzleModel.FK_Connection_User" ManuallyRouted="false" />
         <AssociationConnector Association="WhizzleModel.FK_Connection_User_Friend" ManuallyRouted="false" />
         <AssociationConnector Association="WhizzleModel.FK_PinBoard_Team" ManuallyRouted="false" />
-        <AssociationConnector Association="WhizzleModel.FK_PinBoard_User_Assignee" ManuallyRouted="false" />
         <AssociationConnector Association="WhizzleModel.FK_PinBoard_User_Creator" ManuallyRouted="false" />
         <AssociationConnector Association="WhizzleModel.FK_TeamMember_Team" ManuallyRouted="false" />
         <AssociationConnector Association="WhizzleModel.FK_TeamMember_User" ManuallyRouted="false" />
