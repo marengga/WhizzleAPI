@@ -12,7 +12,7 @@ namespace WhizzleAPI.Controllers
     {
         static readonly ILibraryRepository repo = new LibraryRepository();
 
-        public List<LibraryModel> GetAllNews()
+        public List<LibraryModel> GetAllLibrary()
         {
             return repo.GetAll();
         }

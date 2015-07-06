@@ -80,18 +80,45 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="bin\WhizzleAPI.dll" />
+    <Content Include="bin\WhizzleAPI.pdb" />
     <Content Include="Global.asax" />
+    <Content Include="obj\Debug\TempPE\DataAccess.WhizzleDB.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\DataAccess.WhizzleDB.cs.dll" />
+    <Content Include="obj\Debug\TempPE\DataAccess.WhizzleDB.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.WhizzleDB.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.WhizzleDB.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\WhizzleDB.cs.dll" />
+    <Content Include="obj\Debug\TempPE\WhizzleDB.Designer.cs.dll" />
+    <Content Include="obj\Debug\WhistlerAPI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\WhistlerAPI.dll" />
+    <Content Include="obj\Debug\WhistlerAPI.pdb" />
+    <Content Include="obj\Debug\WhizzleAPI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\WhizzleAPI.dll" />
+    <Content Include="obj\Debug\WhizzleAPI.pdb" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\PinController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -134,11 +161,13 @@
     <Compile Include="Models\IFileRepository.cs" />
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\FileRepository.cs" />
+    <Compile Include="Models\IPinRepository.cs" />
     <Compile Include="Models\ITeamRepository.cs" />
     <Compile Include="Models\IImageRepository.cs" />
     <Compile Include="Models\IMessageRepository.cs" />
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Models\PinModel.cs" />
+    <Compile Include="Models\PinRepository.cs" />
     <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\TeamRepository.cs" />
@@ -153,6 +182,9 @@
     <Compile Include="Models\NewsRepository.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\WhizzleDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -172,6 +204,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="bin\WhizzleAPI.dll.config" />
+    <Content Include="obj\Debug\build.force" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Data Access\WhizzleDB.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Data Access\WhizzleDB.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Data Access\WhizzleDB.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\DataAccess\WhizzleDB.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\DataAccess\WhizzleDB.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\DataAccess\WhizzleDB.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\WhizzleDB.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\WhizzleDB.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\WhizzleDB.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\WhizzleDB.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\WhizzleDB.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\WhizzleDB.ssdl" />
+    <Content Include="obj\Debug\WhistlerAPI.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Debug\WhizzleAPI.csprojResolveAssemblyReference.cache" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
