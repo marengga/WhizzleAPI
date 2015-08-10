@@ -20,7 +20,9 @@ namespace WhizzleAPI.Models
         List<NewsModel> INewsRepository.GetAll()
         {
             List<NewsModel> nyus = new List<NewsModel>();
-            foreach (var i in we.News)
+            var allnews = (from n in we.News
+                        select n).OrderByDescending(x => x.PublishedOn);
+            foreach (var i in allnews)
             {
                 nyus.Add(new NewsModel
                 {
